@@ -35,8 +35,11 @@ public class double_game extends AppCompatActivity {
          no_of_rounds=intent.getIntExtra("rounds",0);
         TextView p1=(TextView)findViewById(R.id.p1);
         TextView p2=(TextView)findViewById(R.id.p2);
-        p1.setText(p1_name);
+        try{p1.setText(p1_name);
         p2.setText(p2_name);
+        score_1.setText(p1_name+" : "+Integer.toString(score_p1));
+        score_2.setText(p2_name+" : "+Integer.toString(score_p2));}
+        catch(RuntimeException re){}
         ButtonListener();
 
 
@@ -58,29 +61,20 @@ public class double_game extends AppCompatActivity {
                 selected_2=p2.getCheckedRadioButtonId();
                 rb_p2=(RadioButton)findViewById(selected_2);
                 // Toast.makeText(MainActivity.this,Integer.toString(selected_1)+"\n"+Integer.toString(selected_2),Toast.LENGTH_SHORT).show();
-                int difference=selected_2-selected_1;
 
-
-                switch(difference){
-                    case -31:
-                    case -62:
-                    case -81:
-                        Toast.makeText(double_game.this,"Draw",Toast.LENGTH_SHORT).show();
-                        break;
-                    case -45:
-                    case -145:
-                    case -74:
-                        score_p1++;
-                        score_1.setText(p1_name+" : "+Integer.toString(score_p1));
-                        break;
-                    case -69:
-                            case -157:
-                    case 52:score_p2++;
-                        score_2.setText(p2_name+" : "+Integer.toString(score_p2));
-                        break;
-                }
-
-       if(times==no_of_rounds){
+if((selected_1==R.id.p1_paper && selected_2==R.id.p2_paper )|| (selected_1==R.id.p1_rock && selected_2==R.id.p2_rock )||(selected_1==R.id.p1_scissor && selected_2==R.id.p2_scissor )){
+    Toast.makeText(double_game.this,"Draw\n"+Integer.toString(times),Toast.LENGTH_SHORT).show();
+}
+else if((selected_1==R.id.p1_paper && selected_2==R.id.p2_rock )|| (selected_1==R.id.p1_rock && selected_2==R.id.p2_scissor )||(selected_1==R.id.p1_scissor && selected_2==R.id.p2_paper ))
+{
+    score_p1++;
+    score_1.setText(p1_name+" : "+Integer.toString(score_p1));
+}
+else{
+    score_p2++;
+    score_2.setText(p2_name+" : "+Integer.toString(score_p2));
+}
+      if(times==no_of_rounds){
 Intent intent=new Intent(double_game.this,Double_game_result.class);
 intent.putExtra("score_p1",score_p1);
 intent.putExtra("score_p2",score_p2);

@@ -39,8 +39,12 @@ String winner;
 
         TextView p1=(TextView)findViewById(R.id.s_p1);
         TextView p2=(TextView)findViewById(R.id.s_p2);
+        try{
         p1.setText(p1_name);
         p2.setText("Computer");
+        score_1.setText(p1_name+" : "+Integer.toString(score_p1));
+        score_2.setText("Computer : "+Integer.toString(score_p2));}
+        catch(RuntimeException re){}
         ButtonListener();
 
 
@@ -72,25 +76,18 @@ String winner;
                 }
 
                // Toast.makeText(single_game.this,Integer.toString(selected_1)+"\n"+Integer.toString(selected_2),Toast.LENGTH_SHORT).show();
-               int difference=selected_2-selected_1;
 
-                switch(difference){
-                    case -176:
-                    case 53:
-                    case -2:
-                        Toast.makeText(single_game.this,"Draw",Toast.LENGTH_SHORT).show();
-                        break;
-                    case 13:
-                    case -49:
-                    case 9:
-                        score_p2++;
-                        score_1.setText("Computer : "+Integer.toString(score_p2));
-                        break;
-                    case -87:
-                    case -38:
-                    case 98:score_p1++;
-                        score_2.setText(p1_name+" : "+Integer.toString(score_p1));
-                        break;
+                if((selected_1==R.id.s_p1_paper && selected_2==R.id.s_p2_paper )|| (selected_1==R.id.s_p1_rock && selected_2==R.id.s_p2_rock )||(selected_1==R.id.s_p1_scissor && selected_2==R.id.s_p2_scissor )){
+                    Toast.makeText(single_game.this,"Drew",Toast.LENGTH_SHORT).show();
+                }
+                else if((selected_1==R.id.s_p1_paper && selected_2==R.id.s_p2_rock )|| (selected_1==R.id.s_p1_rock && selected_2==R.id.s_p2_scissor )||(selected_1==R.id.s_p1_scissor && selected_2==R.id.s_p2_paper ))
+                {
+                    score_p1++;
+                    score_1.setText(p1_name+" : "+Integer.toString(score_p1));
+                }
+                else{
+                    score_p2++;
+                    score_2.setText("Computer : "+Integer.toString(score_p2));
                 }
 
                 if(times==no_of_rounds){
