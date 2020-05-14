@@ -5,10 +5,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 public class Single_game_result extends AppCompatActivity {
+    View v;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,12 +19,18 @@ public class Single_game_result extends AppCompatActivity {
         Intent intent=getIntent();
         String winner=intent.getStringExtra("winner");
         TextView t=(TextView)findViewById(R.id.textView2);
-        ImageView i=(ImageView)findViewById(R.id.imageView);
+       // ImageView i=(ImageView)findViewById(R.id.imageView);
         t.setText(winner);
-        if(winner=="You win !!")
-            i.setBackgroundColor(getResources().getColor(R.color.green));
-        else if(winner=="You lose !!")
-            i.setBackgroundColor(getResources().getColor(R.color.red));
+        v=this.getWindow().getDecorView();
+
+        if(winner.equals("You win !!")){
+v.setBackgroundColor(getResources().getColor(R.color.green));
+        }
+
+        else if(winner.equals("You lose !!")){
+v.setBackgroundColor(getResources().getColor(R.color.red));
+        }
+
 
     }
 }

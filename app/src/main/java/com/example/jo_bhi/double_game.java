@@ -46,6 +46,7 @@ public class double_game extends AppCompatActivity {
     }
 
     public void ButtonListener(){
+        no_of_rounds=5;
 
         score_1 =(TextView)findViewById(R.id.score_1);
         score_2 =(TextView)findViewById(R.id.score_2);

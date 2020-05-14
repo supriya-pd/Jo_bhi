@@ -11,6 +11,9 @@ import android.widget.EditText;
 public class Single_mode extends AppCompatActivity {
     int no_of_rounds;
     String name_1;
+    public static final String EXTRA_NAME_A="com.example.jo_bhi.player 1";
+
+    public static final String EXTRA_INT="com.example.jo_bhi.rounds";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,9 +34,9 @@ b.setOnClickListener(new View.OnClickListener() {
     @Override
     public void onClick(View v) {
         Intent intent =new Intent(Single_mode.this,single_game.class);
-        intent.putExtra("p1_name",name_1);
+        intent.putExtra(EXTRA_NAME_A,name_1);
 
-        intent.putExtra("rounds",no_of_rounds);
+        intent.putExtra(EXTRA_INT,no_of_rounds);
         startActivity(intent);
 
     }
